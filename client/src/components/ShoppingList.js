@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
-import uuid from 'uuid';
 import { getItems,deleteItem } from '../actions/ItemActions';
 import PropTypes from 'prop-types';
 
 class ShoppingList extends Component {
 
-    ComponentDidMout(){
+    componentDidMount(){
         this.props.getItems();
     }
 
