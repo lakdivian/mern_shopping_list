@@ -24,7 +24,8 @@ export default function(state = initialState, action){
         items: [
           ...state.items,
           action.payload
-        ]
+        ],
+        loading: false
       }
     case ITEMS_LOADING:
       return {

@@ -11,9 +11,16 @@ router.get('/', (req, res) => {
     Item.find()
         .sort({ date: -1 })
         .then(items => {
-            items.map(item => )
+            // Creating new object that contains only id and name of the product
+            const sorted_items = items.map(item => { 
+                return {
+                    'id': item._id,
+                    'name': item.name
+                    };
+            });
+            res.json(sorted_items);
         });
-})
+});
 
 // @route  post request to api/items
 // @desc   create an item 
@@ -23,9 +30,12 @@ router.post('/', (req, res) => {
         name: req.body.name
     });
     newItem.save()
-        .then(item => res.json(item))
-        .catch(err => console.log("Cannot create item ", err))
-})
+        .then(item => res.json({
+            'name': item.name,
+            'id': item._id
+        }))
+        .catch(err => console.log("Cannot create item ", err));
+});
 
 // @route  delete request to api/items
 // @desc   deletes an item 
@@ -36,7 +46,7 @@ router.delete('/:id', (req, res) => {
         .then(item => item.remove()
             .then(() => res.json({ success: true }))
             .catch(err => console.log("couldn't remove the item")))
-        .catch(err => res.status(404).json({ success: false }))
-})
+        .catch(err => res.status(404).json({ success: false }));
+});
 
 module.exports = router;
