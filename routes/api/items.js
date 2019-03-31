@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../../middleware/auth');
 
 //Item Modole
 const Item = require('../../models/Item');
@@ -12,7 +13,7 @@ router.get('/', (req, res) => {
         .sort({ date: -1 })
         .then(items => {
             // Creating new object that contains only id and name of the product
-            const sorted_items = items.map(item => { 
+            const sorted_items = items.map(item => {
                 return {
                     'id': item._id,
                     'name': item.name
@@ -23,9 +24,9 @@ router.get('/', (req, res) => {
 });
 
 // @route  post request to api/items
-// @desc   create an item 
-// @access Public
-router.post('/', (req, res) => {
+// @desc   create an item
+// @access Private
+router.post('/', auth, (req, res) => {
     const newItem = new Item({
         name: req.body.name
     });
@@ -38,9 +39,9 @@ router.post('/', (req, res) => {
 });
 
 // @route  delete request to api/items
-// @desc   deletes an item 
-// @access Public
-router.delete('/:id', (req, res) => {
+// @desc   deletes an item
+// @access Private
+router.delete('/:id', auth, (req, res) => {
     console.log("request getting hitted")
     Item.findById(req.params.id)
         .then(item => item.remove()

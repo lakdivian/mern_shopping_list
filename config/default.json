@@ -1,0 +1,4 @@
+{
+  "mongoUri": "mongodb+srv://noorul:Noorul%2B123@cluster0-tdpar.mongodb.net/test?retryWrites=true",
+  "jwtSecret": "msl_jwtSecret"
+}
