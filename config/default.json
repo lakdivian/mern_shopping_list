@@ -1,4 +1,4 @@
 {
-  "mongoUri": "mongodb+srv://noorul:Noorul%2B123@cluster0-tdpar.mongodb.net/test?retryWrites=true",
+  "mongoUri": "mongodb://localhost:27017/mern_stack",
   "jwtSecret": "msl_jwtSecret"
 }
